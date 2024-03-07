@@ -8,6 +8,8 @@ const movesElement = document.querySelector("#moves")
 const playerMoveElement = document.querySelector("#playerMove")
 const cpuMoveElement = document.querySelector("#cpuMove")
 
+const resetElement = document.querySelector("#reset")
+
 const playStyles = [
 {
     type: "rock",
@@ -28,8 +30,8 @@ const playStyles = [
 
 function play(jogada){
     const playerMove = playStyles.find((style) => style.type == jogada)  
-    const randomMove = playStyles[Math.round(Math.random()*playStyles.length)]
-
+    const randomMove = playStyles[parseInt(Math.random()*(playStyles.length-1))]
+    
     playerSelectElement.classList.add("hidden")
 
     playerMoveElement.children[0].src = playerMove.img
@@ -52,11 +54,27 @@ function play(jogada){
         }
     }, 1000)
 
+    setTimeout(() => {
+        resetElement.classList.remove("hidden")
+    }, 2000)
+
 }
 
 const isWin = (playerMove, cpuMove) => playerMove.type === cpuMove.losesTo
 const isDraw = (playerMove, cpuMove) => playerMove.type === cpuMove.type
 const isLose = (playerMove, cpuMove) => playerMove.losesTo === cpuMove.type
+
+function reset(){
+    playerSelectElement.classList.remove("hidden")
+    movesElement.classList.add("hidden")
+    playerMoveElement.classList.remove("win")    
+    cpuMoveElement.classList.remove("win")   
+    playerMoveElement.classList.remove("draw")
+    cpuMoveElement.classList.remove("draw")
+    cpuMoveElement.classList.remove("lose")
+    playerMoveElement.classList.remove("lose")    
+    resetElement.classList.add("hidden")
+}
 
 rockElement.addEventListener("click", (e) => {
     play("rock")
@@ -70,3 +88,6 @@ scissorElement.addEventListener("click", (e) => {
     play("scissor")
 })
 
+resetElement.addEventListener('click', (e) => {
+    reset()
+})

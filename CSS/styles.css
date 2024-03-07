@@ -10,6 +10,7 @@ body{
     min-height: 100dvh;
 
     display: flex;  
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #222222;
@@ -88,6 +89,17 @@ body{
     background-color: #ec6969;
 }
 
+#reset{
+    color: #fff;
+    background-color: rgb(70, 70, 163);
+    padding: 5px 10px;
+
+    &:hover{
+        cursor: pointer;
+        opacity: .7;
+        transition: .2s;
+    }
+}
 
 @keyframes show-item-animation {
     from{
@@ -96,4 +108,10 @@ body{
     to{
         scale: 100%;
     }
+}
+
+@media (max-width: 500px) {
+    .round{
+        flex-direction: column;
+    }       
 }
