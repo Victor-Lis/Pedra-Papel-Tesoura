@@ -71,3 +71,16 @@ body{
 .hidden{
     display: none;
 }
+
+.show-card{
+    animation: .2s show-item-animation linear;
+}
+
+@keyframes show-item-animation {
+    from{
+        scale: 0%;
+    }
+    to{
+        scale: 100%;
+    }
+}

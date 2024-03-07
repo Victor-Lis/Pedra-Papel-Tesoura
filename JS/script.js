@@ -6,6 +6,7 @@ const playerSelectElement = document.querySelector("#player-select")
 const movesElement = document.querySelector("#moves")
 
 const playerMoveElement = document.querySelector("#playerMove")
+const cpuMoveElement = document.querySelector("#cpuMove")
 
 const playStyles = [
 {
@@ -34,6 +35,8 @@ function play(jogada){
     playerMoveElement.children[0].src = playerMove.img
     playerMoveElement.children[1].innerText = playerMove.type
 
+    cpuMoveElement.children[0].src = randomMove.img
+    cpuMoveElement.children[1].innerText = randomMove.type
     movesElement.classList.remove("hidden")
 }
 
