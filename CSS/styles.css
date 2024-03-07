@@ -76,6 +76,19 @@ body{
     animation: .2s show-item-animation linear;
 }
 
+.win{
+    background-color: #69ec69;
+}
+
+.draw{
+    background-color: #f6ff00;
+}
+
+.lose{
+    background-color: #ec6969;
+}
+
+
 @keyframes show-item-animation {
     from{
         scale: 0%;

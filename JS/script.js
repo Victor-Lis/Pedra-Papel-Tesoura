@@ -38,7 +38,25 @@ function play(jogada){
     cpuMoveElement.children[0].src = randomMove.img
     cpuMoveElement.children[1].innerText = randomMove.type
     movesElement.classList.remove("hidden")
+
+    setTimeout(() => {
+        if(isWin(playerMove, randomMove)){
+            playerMoveElement.classList.add("win")    
+            cpuMoveElement.classList.add("lose")
+        }else if(isDraw(playerMove, randomMove)){
+            playerMoveElement.classList.add("draw")
+            cpuMoveElement.classList.add("draw")
+        }else if(isLose(playerMove, randomMove)){
+            playerMoveElement.classList.add("lose")    
+            cpuMoveElement.classList.add("win")   
+        }
+    }, 1000)
+
 }
+
+const isWin = (playerMove, cpuMove) => playerMove.type === cpuMove.losesTo
+const isDraw = (playerMove, cpuMove) => playerMove.type === cpuMove.type
+const isLose = (playerMove, cpuMove) => playerMove.losesTo === cpuMove.type
 
 rockElement.addEventListener("click", (e) => {
     play("rock")
