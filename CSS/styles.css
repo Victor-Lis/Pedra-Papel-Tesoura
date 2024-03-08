@@ -48,12 +48,6 @@ body{
         max-width: 150px;
         width: 60%;
     }
-
-    &:hover{
-        cursor: pointer;
-        opacity: .7;
-        transition: .2s;
-    }
 }
 
 .round{
@@ -93,12 +87,14 @@ body{
     color: #fff;
     background-color: rgb(70, 70, 163);
     padding: 5px 10px;
+}
 
+.hover{
     &:hover{
         cursor: pointer;
         opacity: .7;
         transition: .2s;
-    }
+    } 
 }
 
 @keyframes show-item-animation {
