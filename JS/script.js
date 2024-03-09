@@ -32,8 +32,8 @@ const playStyles = [
 }
 ]
 
-let playerWins = 0;
-let cpuWins = 0;
+let playerWins = parseInt(localStorage.getItem("playerWins")) || 0;
+let cpuWins = parseInt(localStorage.getItem("cpuWins")) || 0;
 
 function play(jogada){
     const playerMove = playStyles.find((style) => style.type == jogada)  
@@ -50,14 +50,14 @@ function play(jogada){
 
     setTimeout(() => {
         if(isWin(playerMove, randomMove)){
-            playerWins++;
+            updatePlayerWins();
             playerMoveElement.classList.add("win")    
             cpuMoveElement.classList.add("lose")
         }else if(isDraw(playerMove, randomMove)){
             playerMoveElement.classList.add("draw")
             cpuMoveElement.classList.add("draw")
         }else if(isLose(playerMove, randomMove)){
-            cpuWins++;
+            updateCpuWins();
             playerMoveElement.classList.add("lose")    
             cpuMoveElement.classList.add("win")   
         }
@@ -106,3 +106,13 @@ scissorElement.addEventListener("click", (e) => {
 resetElement.addEventListener('click', (e) => {
     reset()
 })
+
+function updatePlayerWins(){
+    playerWins++
+    localStorage.setItem("playerWins", JSON.stringify(playerWins))
+}
+
+function updateCpuWins(){
+    cpuWins++
+    localStorage.setItem("cpuWins", JSON.stringify(cpuWins))
+}
