@@ -37,7 +37,7 @@ let cpuWins = parseInt(localStorage.getItem("cpuWins")) || 0;
 
 function play(jogada){
     const playerMove = playStyles.find((style) => style.type == jogada)  
-    const randomMove = playStyles[parseInt(Math.random()*(playStyles.length-1))]
+    const randomMove = playStyles[Math.floor(Math.random()*(playStyles.length))]
     
     playerSelectElement.classList.add("hidden")
 
