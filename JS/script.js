@@ -8,6 +8,10 @@ const movesElement = document.querySelector("#moves")
 const playerMoveElement = document.querySelector("#playerMove")
 const cpuMoveElement = document.querySelector("#cpuMove")
 
+const placarElement = document.querySelector("#placar")
+const placarPlayerElement = document.querySelector("#player_placar")
+const placarCpuElement = document.querySelector("#cpu_placar")
+
 const resetElement = document.querySelector("#reset")
 
 const playStyles = [
@@ -28,6 +32,9 @@ const playStyles = [
 }
 ]
 
+let playerWins = 0;
+let cpuWins = 0;
+
 function play(jogada){
     const playerMove = playStyles.find((style) => style.type == jogada)  
     const randomMove = playStyles[parseInt(Math.random()*(playStyles.length-1))]
@@ -43,12 +50,14 @@ function play(jogada){
 
     setTimeout(() => {
         if(isWin(playerMove, randomMove)){
+            playerWins++;
             playerMoveElement.classList.add("win")    
             cpuMoveElement.classList.add("lose")
         }else if(isDraw(playerMove, randomMove)){
             playerMoveElement.classList.add("draw")
             cpuMoveElement.classList.add("draw")
         }else if(isLose(playerMove, randomMove)){
+            cpuWins++;
             playerMoveElement.classList.add("lose")    
             cpuMoveElement.classList.add("win")   
         }
@@ -56,6 +65,10 @@ function play(jogada){
 
     setTimeout(() => {
         resetElement.classList.remove("hidden")
+        placarPlayerElement.innerText = playerWins
+        placarCpuElement.innerText = cpuWins
+        placarElement.classList.add("placar")
+        placarElement.classList.remove("hidden")
     }, 2000)
 
 }
@@ -73,6 +86,8 @@ function reset(){
     cpuMoveElement.classList.remove("draw")
     cpuMoveElement.classList.remove("lose")
     playerMoveElement.classList.remove("lose")    
+    placarElement.classList.remove("placar")
+    placarElement.classList.add("hidden")
     resetElement.classList.add("hidden")
 }
 
